@@ -11,6 +11,9 @@ import numpy as np
 import time
 import profile
 
+plt.rcParams['font.sans-serif']=['SimHei'] #用来正常显示中文标签
+plt.rcParams['axes.unicode_minus']=False   #用来正常显示负号
+
 class Regressor:
     def __init__(self, step=10, feature_num=6):
         self.step = step
@@ -39,9 +42,19 @@ class Regressor:
         a = pd.DataFrame()
         a['预测值'] = list(self.y_pred)
         a['实际值'] = list(self.y_test)
-        plt.plot(a['实际值'], a['预测值'])
+        plt.scatter(a['实际值'], a['预测值'],c='r')
+        plt.xlabel("实际价格")  # x轴名称
+        plt.ylabel("预测股价")  # y轴名称
+        plt.savefig("predict.png")
+        plt.show()
+        plt.plot(a['预测值'][10:100] )
+        plt.plot(a['实际值'][10:100])
+        plt.savefig("predict2.png")
+        plt.show()
 
-    @profile
+
+
+    # @profile
     def model_param_search(self):
         parameters = {"boosting_type": 'gbdt', "objective": 'regression', "num_leaves": 1200,
                       "learning_rate": 0.1, "n_estimators": 200, "max_depth": 15,
@@ -62,8 +75,9 @@ if __name__ == '__main__':
     regressor.model_train()
     regressor.model_predict()
     regressor.model_evaluate()
+    regressor.plot_predict()
 
-    start = time.time()
-    regressor.model_param_search()
-    end = time.time()
-    print("计算时间:{}".format(end - start))
+    # start = time.time()
+    # regressor.model_param_search()
+    # end = time.time()
+    # print("计算时间:{}".format(end - start))
