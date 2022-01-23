@@ -19,7 +19,7 @@ find . -name '*.py' -type f -print -exec rm {} \;
 find . -name '__pycache__' -exec rmdir {} \;
 zip -r ../$1.zip ./*
   
-python -m compileall .
+python -O -m compileall .
 find . -name "*.pyc" -exec rename ".cpython-39.opt-1" "" {} \;
 find . -name '*.pyc' -execdir mv {} .. \;
 find . -name '*.py' -type f -print -exec rm {} \;
