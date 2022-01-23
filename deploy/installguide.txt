@@ -1,2 +1,8 @@
+install module
 pip install -r requirements.txt
 
+apipost
+https://www.apipost.cn/download.html
+
+docker
+https://www.docker.com/products/docker-desktop
