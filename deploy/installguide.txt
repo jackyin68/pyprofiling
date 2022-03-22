@@ -6,3 +6,8 @@ https://www.apipost.cn/download.html
 
 docker
 https://www.docker.com/products/docker-desktop
+
+upgrade
+python -m pip install --force-reinstall pip
+python -m pip install --force-reinstall setuptools
+
